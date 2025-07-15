@@ -1,0 +1,32 @@
+[
+  {
+    "year": 862,
+    "event": "Foundation of Kievan Rus'",
+    "description": "The traditional date for the foundation of Kievan Rus' by the Varangian chieftain Rurik."
+  },
+  {
+    "year": 988,
+    "event": "Christianization of Kievan Rus'",
+    "description": "Vladimir the Great adopts Christianity as the state religion of Kievan Rus'."
+  },
+  {
+    "year": 1237,
+    "event": "Mongol Invasion of Rus'",
+    "description": "The Mongol Empire begins its invasion of the Russian principalities."
+  },
+  {
+    "year": 1380,
+    "event": "Battle of Kulikovo",
+    "description": "Dmitry Donskoy, the Prince of Moscow, defeats the Mongols in a major battle."
+  },
+  {
+    "year": 1480,
+    "event": "Great Stand on the Ugra River",
+    "description": "The end of the Mongol-Tatar yoke over Russia."
+  },
+  {
+    "year": 1547,
+    "event": "Ivan the Terrible Becomes Tsar",
+    "description": "Ivan IV, also known as Ivan the Terrible, is crowned the first Tsar of Russia."
+  }
+]
