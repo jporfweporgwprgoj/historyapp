@@ -3,10 +3,10 @@ import Reveal from 'reveal.js';
 import 'reveal.js/dist/reveal.css';
 import 'reveal.js/dist/theme/black.css';
 import Slide from './Slide';
-import { SlideData } from '../data/slides';
+import { SlideContent } from '../data/history_slides';
 
 interface PresentationProps {
-  slides: SlideData[];
+  slides: SlideContent[];
 }
 
 const Presentation = forwardRef<Reveal.Api, PresentationProps>((props, ref) => {
@@ -32,7 +32,9 @@ const Presentation = forwardRef<Reveal.Api, PresentationProps>((props, ref) => {
         {props.slides.map((slide, index) => (
           <Slide key={index}>
             <h2>{slide.title}</h2>
-            <p>{slide.content}</p>
+            <div style={{ maxHeight: '60vh', overflowY: 'auto' }}>
+              <div dangerouslySetInnerHTML={{ __html: slide.content }} />
+            </div>
           </Slide>
         ))}
       </div>
