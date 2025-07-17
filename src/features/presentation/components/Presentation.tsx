@@ -1,44 +1,40 @@
-import React, { useEffect, forwardRef } from 'react';
+import { useEffect, forwardRef, useImperativeHandle, useRef } from 'react';
 import Reveal from 'reveal.js';
 import 'reveal.js/dist/reveal.css';
 import 'reveal.js/dist/theme/black.css';
 import Slide from './Slide';
+import { SlideData } from '../data/slides';
 
 interface PresentationProps {
-  // empty
+  slides: SlideData[];
 }
 
 const Presentation = forwardRef<Reveal.Api, PresentationProps>((props, ref) => {
+  const deckRef = useRef<Reveal.Api>(null);
+
+  useImperativeHandle(ref, () => deckRef.current as Reveal.Api, []);
+
   useEffect(() => {
-    const deck = new Reveal();
-    deck.initialize({
-      controls: false, // We are using custom controls
+    const deck = new Reveal(deckRef.current, {
+      controls: false,
       progress: true,
       history: true,
       center: true,
       transition: 'fade',
       backgroundTransition: 'fade',
     });
-    if (ref) {
-      if (typeof ref === 'function') {
-        ref(deck);
-      } else {
-        ref.current = deck;
-      }
-    }
-  }, [ref]);
+    deck.initialize();
+  }, []);
 
   return (
-    <div className="reveal">
+    <div className="reveal" ref={deckRef as React.RefObject<HTMLDivElement>}>
       <div className="slides">
-        <Slide>
-          <h2>Добро пожаловать!</h2>
-          <p>Интерактивное путешествие по истории.</p>
-        </Slide>
-        <Slide>
-          <h2>Слайд 2</h2>
-          <p>Содержимое второго слайда.</p>
-        </Slide>
+        {props.slides.map((slide, index) => (
+          <Slide key={index}>
+            <h2>{slide.title}</h2>
+            <p>{slide.content}</p>
+          </Slide>
+        ))}
       </div>
     </div>
   );

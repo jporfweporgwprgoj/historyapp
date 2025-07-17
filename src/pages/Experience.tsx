@@ -3,23 +3,26 @@ import Presentation from '../features/presentation/components/Presentation';
 import Scene from '../features/scene/components/Scene';
 import Controls from '../features/controls/components/Controls';
 import Reveal from 'reveal.js';
+import { slides } from '../features/presentation/data/slides';
+import './Experience.css';
 
 const Experience = () => {
   const revealRef = useRef<Reveal.Api>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
-    const onSlideChanged = (event: any) => {
+    const onSlideChanged = (event: { indexh: number }) => {
       setCurrentSlide(event.indexh);
     };
 
-    if (revealRef.current) {
-      revealRef.current.on('slidechanged', onSlideChanged);
+    const deck = revealRef.current;
+    if (deck) {
+      deck.on('slidechanged', onSlideChanged);
     }
 
     return () => {
-      if (revealRef.current) {
-        revealRef.current.off('slidechanged', onSlideChanged);
+      if (deck) {
+        deck.off('slidechanged', onSlideChanged);
       }
     };
   }, []);
@@ -37,19 +40,10 @@ const Experience = () => {
   };
 
   return (
-    <div style={{ height: '100vh', width: '100vw' }}>
-      <Presentation ref={revealRef} />
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          pointerEvents: 'none',
-        }}
-      >
-        <Scene currentSlide={currentSlide} />
+    <div className="experience-container">
+      <Presentation ref={revealRef} slides={slides} />
+      <div className="scene-container">
+        <Scene slide={slides[currentSlide]} />
       </div>
       <Controls onNext={onNext} onPrev={onPrev} />
     </div>
