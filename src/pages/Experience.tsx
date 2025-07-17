@@ -3,7 +3,7 @@ import Presentation from '../features/presentation/components/Presentation';
 import Scene from '../features/scene/components/Scene';
 import Controls from '../features/controls/components/Controls';
 import Reveal from 'reveal.js';
-import { slides } from '../features/presentation/data/slides';
+import { historySlides } from '../features/presentation/data/history_slides';
 import './Experience.css';
 
 const Experience = () => {
@@ -41,9 +41,9 @@ const Experience = () => {
 
   return (
     <div className="experience-container">
-      <Presentation ref={revealRef} slides={slides} />
+      <Presentation ref={revealRef} slides={historySlides} />
       <div className="scene-container">
-        <Scene slide={slides[currentSlide]} />
+        <Scene slide={historySlides[currentSlide]} />
       </div>
       <Controls onNext={onNext} onPrev={onPrev} />
     </div>
