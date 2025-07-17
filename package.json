@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-three/drei": "^10.5.1",
     "@react-three/fiber": "^9.2.0",
+    "@types/reveal.js": "^5.2.0",
     "d3": "^7.9.0",
     "express": "^5.1.0",
     "i18next": "^25.3.2",
@@ -19,6 +20,7 @@
     "react-dom": "^19.1.0",
     "react-i18next": "^15.6.0",
     "react-router-dom": "^7.6.3",
+    "reveal.js": "^5.2.1",
     "three": "^0.178.0"
   },
   "devDependencies": {
